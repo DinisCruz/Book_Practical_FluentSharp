@@ -1,0 +1,182 @@
+##  Using O2 FluentSharp REPL in VisualStudio on a WinForms C# application 
+
+  
+**1) Start VisualStudio 2010**  
+
+
+[![](images/CropperCapture_5B2_5D.jpg)](http://3.bp.blogspot.com/-tv1dFkrOQ40/UIFSKWf-YMI/AAAAAAAAAbc/W7GDPDGXkm8/s1600/CropperCapture%5B2%5D.jpg)
+
+  
+**2) Create a new Project of Type 'Windows Forms Application'**
+
+  
+
+
+[![](images/CropperCapture_5B3_5D.jpg)](http://2.bp.blogspot.com/-RpS_EKZS5TA/UIFSUNlrxCI/AAAAAAAAAbk/JO15EiyQuSk/s1600/CropperCapture%5B3%5D.jpg)
+
+  
+
+
+**3) Once the solution/project loads, open NuGet Package Manager** (right click on project and chose 'Manage NuGet Dependencies') ,  search for REPL, and install the one that says "FluentSharp - C# REPL"
+
+  
+
+
+[![](images/CropperCapture_5B4_5D.jpg)](http://2.bp.blogspot.com/-HrSWOwl5qRk/UIFTdfg7soI/AAAAAAAAAbs/PbX1N0I5JyQ/s1600/CropperCapture%5B4%5D.jpg)
+
+  
+after the installation
+
+[![](images/CropperCapture_5B6_5D.jpg)](http://4.bp.blogspot.com/-WISE5oorazE/UIFTsizc6mI/AAAAAAAAAb0/4U8hUcUlQrI/s1600/CropperCapture%5B6%5D.jpg)
+
+  
+there should be a number of new references in the project:
+
+[![](images/CropperCapture_5B7_5D.jpg)](http://4.bp.blogspot.com/-p-pcI5IJVY0/UIFTvLRh4MI/AAAAAAAAAb8/um3bR9j-uYQ/s1600/CropperCapture%5B7%5D.jpg)
+
+  
+
+
+  
+
+
+  
+
+
+**4) Change the compilation target** (this might not be needed on your project) from 
+
+  
+
+
+[![](images/CropperCapture_5B10_5D.jpg)](http://2.bp.blogspot.com/-4Yzg9a86mUM/UIFWdPB_IAI/AAAAAAAAAcc/wRzhEbNFDiQ/s1600/CropperCapture%5B10%5D.jpg)
+
+  
+
+
+to** '.Net Framework 4'**
+
+  
+
+
+[![](images/CropperCapture_5B11_5D.jpg)](http://2.bp.blogspot.com/-e4ZrAeUIWXY/UIFWjBVs7kI/AAAAAAAAAck/bCbicpBUxoU/s1600/CropperCapture%5B11%5D.jpg)
+
+  
+
+
+**5) open the Form1.cs** file in Form Designer
+
+[![](images/CropperCapture_5B8_5D.jpg)](http://3.bp.blogspot.com/-Ez8t4dY_T6A/UIFW1JLCJWI/AAAAAAAAAdE/E09Vf4h6OQc/s1600/CropperCapture%5B8%5D.jpg)
+
+  
+
+
+and double click in the middle of it to open the code behind page:
+
+  
+
+
+  
+
+
+[![](images/CropperCapture_255B9_255D.jpg)](http://4.bp.blogspot.com/-Hc9n9lhnNUc/UIFW_l5oZKI/AAAAAAAAAdM/r8gnBYW4anc/s1600/CropperCapture%255B9%255D.jpg)
+
+  
+
+
+  
+
+
+**6) In the Form1.cs:**
+
+  * add the using **_O2.DotNetWrappers.ExtensionMethods;_** namespace
+  * add a simple O2 script like :** "I'm loaded".alert();**
+
+  
+
+
+  
+
+
+[![](images/CropperCapture_5B13_5D.jpg)](http://4.bp.blogspot.com/-756gDDvQopk/UIFfbxrJQyI/AAAAAAAAAeE/Zal2e8wMxfg/s1600/CropperCapture%5B13%5D.jpg)  
+
+
+  
+
+
+Run the application and a message box like this should popup:
+
+[![](images/CropperCapture_5B12_5D.jpg)](http://2.bp.blogspot.com/-DM7T18q0Lr0/UIFfV1RJxDI/AAAAAAAAAd8/cHmTlqwJQwc/s1600/CropperCapture%5B12%5D.jpg)
+
+  
+
+
+6) add a treeView to the main Form
+
+[![](images/CropperCapture_5B15_5D.jpg)](http://1.bp.blogspot.com/-Pibvfk7W_OU/UIFffeQ02MI/AAAAAAAAAeU/EejeVNNJV-g/s1600/CropperCapture%5B15%5D.jpg)
+
+  
+Run the application, which should now look like this:
+
+[![](images/CropperCapture_5B14_5D.jpg)](http://1.bp.blogspot.com/-jrrJyFYD_zw/UIFfdg7UTnI/AAAAAAAAAeM/AttRsZDXHYI/s1600/CropperCapture%5B14%5D.jpg)
+
+  
+**7) Add a Script Editor to the main Form** (bellow the TreeView)
+
+[![](images/CropperCapture_5B17_5D.jpg)](http://3.bp.blogspot.com/-n-hzOucZXuI/UIFfls18n2I/AAAAAAAAAek/gcLa6w524PE/s1600/CropperCapture%5B17%5D.jpg)
+
+  
+Run the application, which should now look like this:  
+
+
+  
+
+
+[![](images/CropperCapture_5B16_5D.jpg)](http://1.bp.blogspot.com/-h2iGCXZvuj8/UIFfi6hI30I/AAAAAAAAAec/g7bdw-_UKGU/s1600/CropperCapture%5B16%5D.jpg)
+
+  
+
+
+  
+
+
+**8) Add a Menu with a couple REPL options** (and change the size of the from (to 500x500)
+
+[  
+](http://3.bp.blogspot.com/-Rs9x92gl54o/UIFgF5V1X0I/AAAAAAAAAfE/jaqkxoJK5tc/s1600/CropperCapture%5B21%5D.jpg)[![](images/CropperCapture_5B21_5D.jpg)](http://3.bp.blogspot.com/-Rs9x92gl54o/UIFgF5V1X0I/AAAAAAAAAfE/jaqkxoJK5tc/s1600/CropperCapture%5B21%5D.jpg)  
+
+
+  
+
+
+Run the application, which should now look like this:
+
+  
+
+
+[![](images/CropperCapture_5B18_5D.jpg)](http://2.bp.blogspot.com/-FBFX8YxmEUo/UIFfq2SARiI/AAAAAAAAAes/kWTHPRaWkzQ/s1600/CropperCapture%5B18%5D.jpg)
+
+  
+Here is the menu added:
+
+[![](images/CropperCapture_5B20_5D.jpg)](http://3.bp.blogspot.com/-VpHSBspK7P0/UIFgBcGtQEI/AAAAAAAAAe8/uXJzEhe05V0/s1600/CropperCapture%5B20%5D.jpg)
+
+  
+Here are the 3 REPL menus in action:
+
+[![](images/CropperCapture_5B22_5D.jpg)](http://3.bp.blogspot.com/-oKNiBF-l-Ag/UIFgLRdA0wI/AAAAAAAAAfM/uRu7Nyqx1so/s1600/CropperCapture%5B22%5D.jpg)
+
+  
+The end....  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+

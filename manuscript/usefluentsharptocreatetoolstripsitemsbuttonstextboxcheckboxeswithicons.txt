@@ -1,0 +1,8 @@
+##  Use FluentSharp to create ToolStrips items (buttons, textbox, checkboxes) with icons 
+
+Based on the  [215 Tango Library Icons added to FluentsSharp.BCL](http://diniscruz.blogspot.com/2012/10/added-215-tango-library-icons-to.html) , here is how to use the [FluentSharp.BCL](https://www.nuget.org/packages/FluentSharp.BCL) APIs to easily create ToolStrips  
+
+
+This is what this script looks like, as executed inside a WinForms Panel running inside VisualStudio's IDE:
+
+[![](images/Screen_Shot_2012-11-21_at_17_20_39.png)](http://1.bp.blogspot.com/-UWtFoJDHhU0/UK0NdpCawMI/AAAAAAAAFeQ/f6HkgmxXMHY/s1600/Screen+Shot+2012-11-21+at+17.20.39.png)

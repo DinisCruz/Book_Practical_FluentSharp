@@ -1,0 +1,45 @@
+##  Web C# REPL now supports Snippet Save (and better logging) 
+
+Just added a couple features to the Web C# REPL:  
+
+
+  * Ability to save (and share) a snippet (just click on save button and copy the Url)
+  * REST API to load snippet
+
+  * [http://csharp-repl.apphb.com/1](http://csharp-repl.apphb.com/1)
+  * [http://csharp-repl.apphb.com/2](http://csharp-repl.apphb.com/2)
+  * [http://csharp-repl.apphb.com/9](http://csharp-repl.apphb.com/9)
+
+* Page to view today's scripts: [http://csharp-repl.apphb.com/Pages/Todays_Scripts.html](http://csharp-repl.apphb.com/Pages/Todays_Scripts.html)
+* Page to view O2's Logs: [http://csharp-repl.apphb.com/Pages/O2_Logs.html](http://csharp-repl.apphb.com/Pages/O2_Logs.html) 
+* Auto-email (me) on Script save (for debugging purposes)
+
+This is what the default page looks like:
+
+  
+
+
+[![](images/Screen_Shot_2012-10-15_at_03_43_30.png)](http://2.bp.blogspot.com/-DKFwpIB4bCo/UHt6KEOSoPI/AAAAAAAAATE/Xh_PlNEs0FE/s1600/Screen+Shot+2012-10-15+at+03.43.30.png)
+
+  
+
+
+Here is an example of saving a script (note that that Url now is "/9")
+
+  
+
+
+[![](images/Screen_Shot_2012-10-15_at_03_45_59.png)](http://2.bp.blogspot.com/-07OR6-da0Tw/UHt6Yn2sj7I/AAAAAAAAATM/cJDviWVW4rw/s1600/Screen+Shot+2012-10-15+at+03.45.59.png)
+
+  
+
+
+The 'Snippet Save' is a feature that I wanted to have in O2 for ages (i.e the simple capability to share and execute scripts)
+
+  
+
+
+See [Next features to add to C# Web REPL, can you help?](http://diniscruz.blogspot.com/2012/10/next-features-to-add-to-c-web-repl-can.html) for ideas on what could be done next. 
+
+  
+

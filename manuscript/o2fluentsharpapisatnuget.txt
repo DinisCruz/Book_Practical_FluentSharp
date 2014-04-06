@@ -1,0 +1,22 @@
+##  O2 FluentSharp APIs at NuGet 
+
+To make it easier to consume and integrate the O2 Platform APIs with other tools, all the major components are now available via NuGet:
+
+  * [FluentSharp - CoreLib](https://nuget.org/packages/FluentSharp.CoreLib) - _FluentSharp is an API that dramatically simplifies the use of .NET Framework APIs. As an example, the reflection wrapper is probably one of the most powerful .NET Reflection APIs, since it provides (via user-friendly methods) full access to all .NET classes, methods, properties, fields and enums (regardless of their public/private status)._
+  * [FluentSharp - BCL](https://nuget.org/packages/FluentSharp.BCL) - _This is the FluentSharp BCL which provides support for System.Forms and Web_
+  * [FluentSharp - C# REPL](https://nuget.org/packages/FluentSharp.REPL) - _This is the FluentSharp REPL which provides a C# REPL enviroment (REPL is Read Eval Print Loop) which allows for real-time execution of complex C# code (and GUI manipulation) _
+  * [FluentSharp - Roslyn](https://nuget.org/packages/FluentSharp.Roslyn)  - _This is the FluentSharp Roslyn which provides exposed Roslyn (a managed C# compiler engine from Microsoft) _
+  * [ FluentSharp - NGit](https://nuget.org/packages/FluentSharp.NGit) - _This is the FluentSharp NGit which provides exposed NGit (a managed Git API)_
+  * [O2.Platform - Misc Microsoft MPL Libraries](https://nuget.org/packages/O2.Platform.Misc_Microsoft_MPL_Libs)  -_ Misc MPL Libraries from CodePlex: HttpAgilityPack, InputSimulator, Irony Parser, WCF Rest Start Kit, XObjects_
+
+For example, with these packages it is now super fast (and easy) to add a C# REPL to any .NET 3.5+ project
+
+  
+
+
+Note that you can now download and execute the O2 Platform as one stand-alone file from [http://tiny.cc/O2Platform](http://tiny.cc/O2Platform)
+
+  
+
+
+In fact the stand-alone 'O2 Platform application' is basically the [O2's C# REPL](http://diniscruz.blogspot.co.uk/p/real-time-vulnerability-feedback-in.html) with the [O2.Platform.Scripts](https://github.com/o2platform/O2.Platform.Scripts)

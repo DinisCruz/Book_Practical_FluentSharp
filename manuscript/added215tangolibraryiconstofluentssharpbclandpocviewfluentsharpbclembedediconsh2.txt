@@ -1,0 +1,12 @@
+##  Added 215 Tango Library Icons to FluentsSharp.BCL and 'PoC - View FluentSharp_BCL Embeded Icons.h2' 
+
+I just added to [FluentSharp.BCL](https://nuget.org/packages/FluentSharp.BCL) 229 icons from [http://tango.freedesktop.org/Tango_Icon_Library](http://tango.freedesktop.org/Tango_Icon_Library) which should help the O2 Scripts/Tools to look more professional and slick.
+
+The icons where added to the resources (*.rex) file **FormImages **and can be consumed easily via FluentSharp.BCL's extensions methods (see script below for an example of using it on a ToolStrip control)
+
+To  help to find an icon to use, I wrote a quick icon viewer which looks like this:
+
+[![](images/CropperCapture_5B39_5D.jpg)](http://2.bp.blogspot.com/-25Kkxh_vlUg/UHpyjjZA6XI/AAAAAAAAASU/VZFCFWUiTfQ/s1600/CropperCapture%5B39%5D.jpg)
+
+  
+And here is the source code as a [Gist](https://gist.github.com/3887854):

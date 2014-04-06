@@ -1,0 +1,85 @@
+##  Running Customized C# code loaded from TeamMentor's UserData repository 
+
+A really powerful feature of TeamMentor 3.3. is its ability to run CSharp Scripts included in the mapped UserData repository (script execution is powered by O2 Platform's FluentSharp APIs).
+
+This blog post shows how it works
+
+In an TM User data repository, add the **_H2Scripts_** folder
+
+[![image_thumb[60]](images/image_thumb_25255B60_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[141].png)
+
+Inside that folder add a **_FirstScriptToInvoke.h2_** file
+
+[![image_thumb[62]](images/image_thumb_25255B62_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[147].png)
+
+**NOTE: **The reason for this special location is that this is where **_TeamMentor_** engine will look for the first script:
+
+[![image_thumb[67]](images/image_thumb_25255B67_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[156].png)
+
+that should be compiled and executed:
+
+[![image_thumb[64]](images/image_thumb_25255B64_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[153].png)
+
+as part of the TeamMentor Setup process:
+
+[![image_thumb[72]](images/image_thumb_25255B72_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[165].png)
+
+**Invoking First Script**
+
+The **_FirstScriptToInvoke.h2_** file is basically a simple C# script:
+
+[![image_thumb[73]](images/image_thumb_25255B73_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[168].png)
+
+That can be viewed/executed/tested via this TBot page:
+
+[![image_thumb[74]](images/image_thumb_25255B74_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[171].png)
+
+Here are the current **_FirstScriptToInvoke.h2_** script contents:
+
+[![image_thumb[75]](images/image_thumb_25255B75_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[174].png)
+
+And the invocation result:
+
+[![image_thumb[78]](images/image_thumb_25255B78_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[183].png)
+
+**Testing/Coding Script**  
+**  
+**A good way to test this script, is to open a real-time log viewer (only available if running on Cassini)
+
+[![image_thumb[79]](images/image_thumb_25255B79_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[186].png)
+
+Which is a windows Form Gui, that shows real-time log messages (the same log messages available via the **_Debug.aspx_** page or **_DebugInfo_** Tbot view):
+
+[![image_thumb[80]](images/image_thumb_25255B80_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[189].png)
+
+Here is another execution of the original **_FirstScriptToInvoke.h2_** script (note the compilation messages in the LogViewer):
+
+[![image_thumb[81]](images/image_thumb_25255B81_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[192].png)
+
+For example, we can easily add messages to this log viewer, by adding these two lines to the **_FirstScriptToInvoke.h2_** file:
+
+[![image_thumb[82]](images/image_thumb_25255B82_25255D_25255B2_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[195].png) 
+
+which when re-executed (after refreshing the TBot page), will look like this:
+
+[![image_thumb[91]](images/image_thumb_25255B91_25255D_25255B3_25255D.png)](file:///C:/Users/o2/AppData/Local/Temp/WindowsLiveWriter1286139640/supfiles13DE2FAF/image[205].png)
+
+To confirm that the **_FirstScriptToInvoke.h2_** script does execute during startup, reload the cache and note the extra log entries:
+
+[![image](images/image_thumb_25255B7_25255D1.png)](http://lh4.ggpht.com/-LJh45lTx0Xs/UV6DCYvElAI/AAAAAAAAA-o/PxZroXs0Quo/s1600-h/image%25255B3%25255D.png)   
+**  
+****Use online CSharp REPL to develop scripts to include in _FirstScriptToInvoke.h2_ **  
+**_  
+_**When developing scripts it is easier to do them in the CSharp REPL included in the default install of TeamMentor.
+
+You can access it by opening the **_/csharprepl_** url
+
+[![image](images/image_thumb_25255B8_25255D1.png)](http://lh4.ggpht.com/-uDo4atCyiMQ/UV6DDY4cbNI/AAAAAAAAA-0/l4spimnUt8Y/s1600-h/image%25255B6%25255D.png)
+
+which will redirect to:
+
+[![image](images/image_thumb_25255B9_25255D1.png)](http://lh4.ggpht.com/-2LhEEYIXhME/UV6DEiu7Z-I/AAAAAAAAA_I/ece-gbPOiRA/s1600-h/image%25255B9%25255D.png)
+
+and allow real-time REPL style coding:
+
+[![image](images/image_thumb_25255B14_25255D1.png)](http://lh3.ggpht.com/-A52wLhHm8tY/UV6DF2DdlfI/AAAAAAAAA_Y/AkssbHHgYZ4/s1600-h/image%25255B13%25255D.png)

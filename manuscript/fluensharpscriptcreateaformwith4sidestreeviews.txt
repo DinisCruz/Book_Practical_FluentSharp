@@ -1,0 +1,10 @@
+##  FluenSharp Script - Create a form with 4 Sides (TreeViews) 
+
+Here is a simple O2/FluentSharp that creates a simple Form with 4 side-panels (each with a TreeView inside)
+
+[![](images/CropperCapture_5B40_5D.jpg)](http://2.bp.blogspot.com/-cpoDwbShVNg/UHqZlzPgVDI/AAAAAAAAASs/rYy17SA_2z8/s1600/CropperCapture%5B40%5D.jpg)
+
+Code [as Gist](https://gist.github.com/3888234):
+
+  
+

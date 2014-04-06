@@ -1,0 +1,986 @@
+##  Using FluentSharp API's to refactor C# TreeView sample 
+
+While reading reddit's [r/csharp](http://www.reddit.com/r/csharp) I saw the [Can anyone help me answer a quick question about treeview? ](http://www.reddit.com/r/csharp/comments/1ewc7y/can_anyone_help_me_answer_a_quick_question_about/)thread which asked this question:
+
+[![image](images/image_thumb_25255B2_25255D1.png)](http://lh6.ggpht.com/-5KqYN8eWwIw/UaDkl-KKPEI/AAAAAAAAMM8/zHGYzc-yCgE/s1600-h/image%25255B8%25255D.png)
+
+  
+The best [answer was from BCProgramming](http://www.reddit.com/r/csharp/comments/1ewc7y/can_anyone_help_me_answer_a_quick_question_about/ca4ekem) , which provided a C# code sample as the example:
+
+[![image](images/image_thumb_25255B3_25255D1.png)](http://lh4.ggpht.com/-of6sO53YI9M/UaDkngwZswI/AAAAAAAAMNM/s5UCOgQDQL0/s1600-h/image%25255B11%25255D.png)
+
+So I opened an O2 Platform SourceCodeEditor:
+
+[![image](images/image_thumb_25255B9_25255D1.png)](http://lh5.ggpht.com/-TBPSrShnfb4/UaDkpa8TS5I/AAAAAAAAMNY/OKSmYrMPXHM/s1600-h/image%25255B15%25255D.png)
+
+Clicked on **_Sample C#_**  
+**_  
+_**[![image](images/image_thumb_25255B22_25255D.png)](http://lh3.ggpht.com/-ncN968iEAtI/UaDkrPX-vyI/AAAAAAAAMNo/7OmagiLY-wk/s1600-h/image%25255B26%25255D.png)
+
+and copied the [BCProgramming response](http://www.reddit.com/r/csharp/comments/1ewc7y/can_anyone_help_me_answer_a_quick_question_about/ca4ekem) source code
+
+[![image](images/image_thumb_25255B17_25255D.png)](http://lh5.ggpht.com/-oTgaM4dXIlc/UaDks_QRDcI/AAAAAAAAMN8/rEn4Sazv3FA/s1600-h/image%25255B19%25255D.png)
+
+into it:
+
+[![image](images/image_thumb_25255B24_25255D.png)](http://lh6.ggpht.com/-TQR2Z0vKdSQ/UaDku01iUNI/AAAAAAAAMOI/vdiyMKXaC9o/s1600-h/image%25255B32%25255D.png)
+
+The first attempt to compile the source code failed:
+
+[![image](images/image_thumb_25255B23_25255D.png)](http://lh5.ggpht.com/-tZhIbk_wIZc/UaDkwseetbI/AAAAAAAAMOc/hknOJLReN3E/s1600-h/image%25255B29%25255D.png)
+
+because the code-behind code is missing:
+
+[![image](images/image_thumb_25255B25_25255D.png)](http://lh5.ggpht.com/-jGP_ClMIqIc/UaDkyDKwpPI/AAAAAAAAMOs/l_xnczax47M/s1600-h/image%25255B35%25255D.png)
+
+Which in this case can be easily fixed by adding the **_using O2.DotNetWrappers.ExtensionMethods_** reference and adding an **_TreeView_** here:
+
+[![image](images/image_thumb_25255B26_25255D.png)](http://lh3.ggpht.com/-B0Fpu5auK3g/UaDkzkeEjzI/AAAAAAAAMO8/8pVW0iIy_1M/s1600-h/image%25255B38%25255D.png)
+
+Next step is to create a test class and test method that will fire up the form:
+
+[![image](images/image_thumb_25255B28_25255D.png)](http://lh4.ggpht.com/-2NyWcT-iFoQ/UaDk1AR__ZI/AAAAAAAAMPM/WVyFetyDM10/s1600-h/image%25255B44%25255D.png)
+
+Next step is to add the button
+
+[![image](images/image_thumb_25255B30_25255D.png)](http://lh5.ggpht.com/-zItlFP_jkPM/UaDk26Np1rI/AAAAAAAAMPc/LC_B9ptZDQE/s1600-h/image%25255B50%25255D.png)
+
+which when clicked adds the nodes:
+
+[![image](images/image_thumb_25255B31_25255D.png)](http://lh5.ggpht.com/-Z-fZUrebuMA/UaDk4NvcrFI/AAAAAAAAMPs/p1pQcuTrk60/s1600-h/image%25255B53%25255D.png)
+
+Now that we have this working lets start refectoring the code, using the ExtensionMethods from the [FluenSharp.BCL.dll](http://blog.diniscruz.com/search/label/FluentSharp) library ([available from Nuget](http://nuget.org/packages?q=fluentSharp)).
+
+I'm a big fan of REPL development, so the first extra feature I'm going to add is a link to open a C# REPL window with the current Form passed as parameter (see line 57 below):
+
+[![image](images/image_thumb_25255B32_25255D.png)](http://lh4.ggpht.com/-7ahaKXqBuAU/UaDk5qDpseI/AAAAAAAAMP8/n0tUCw_NGqI/s1600-h/image%25255B56%25255D.png)
+
+which will make the form look like this (note the extra link):
+
+[![image](images/image_thumb_25255B37_25255D.png)](http://lh4.ggpht.com/-LEHDRuawkI8/UaDk64k0YJI/AAAAAAAAMQM/Ee5u9utY5sU/s1600-h/image%25255B69%25255D.png)
+
+and clicking on the link will open the REPL in a popup window:
+
+[![image](images/image_thumb_25255B38_25255D.png)](http://lh3.ggpht.com/-8Gkw72pM0Bw/UaDk8bJtZWI/AAAAAAAAMQc/ryCZr5ONEZw/s1600-h/image%25255B72%25255D.png)
+
+Note how the first command on the REPL was **_return form1;_**  
+**_  
+_**What that means is that we have access to that variable from our script, and that **_form1_** variable is the **_Form_** created by the original C# class, ie. **_NodesTest.Form1_**  
+**_  
+_**[![image](images/image_thumb_25255B39_25255D.png)](http://lh4.ggpht.com/-HxthD582kYc/UaDk91W8SOI/AAAAAAAAMQs/SJemmVPszdY/s1600-h/image%25255B75%25255D.png)
+
+Also note that we have complete control over that Form object, and even have intelisense into its public properties, fields and methods:
+
+[![image](images/image_thumb_25255B44_25255D.png)](http://lh6.ggpht.com/-mUW10WJjMuo/UaDk_kvvA8I/AAAAAAAAMQ8/5e7uTmp0w3U/s1600-h/image%25255B79%25255D.png)
+
+for example the **_tvwTest_** _TreeView_ object:
+
+[![image](images/image_thumb_25255B45_25255D.png)](http://lh5.ggpht.com/-uPbIdZ2FaJs/UaDlBYC7vMI/AAAAAAAAMRI/Y9UM2Jclr6c/s1600-h/image%25255B82%25255D.png)
+
+which we can manipulate in real time (for example to add new Node, change color and get all nodes)
+
+[![image](images/image_thumb_25255B47_25255D.png)](http://lh5.ggpht.com/-k7suBKY9S4Y/UaDlDKUUBTI/AAAAAAAAMRc/vf_c_hWNtt0/s1600-h/image%25255B88%25255D.png)
+
+Note how _**treeView.nodes() **_returned all nodes, and how (below) **_treeView.nodes(true_**) will return a recursive search of all nodes:
+
+[![image](images/image_thumb_25255B48_25255D.png)](http://lh3.ggpht.com/-szb6j_0IHSw/UaDlFNqeicI/AAAAAAAAMRs/y25E1sZZoIc/s1600-h/image%25255B91%25255D.png)
+
+This means that (back into the original code we copied from reddit) we can remove these methods:
+
+[![image](images/image_thumb_25255B49_25255D.png)](http://lh4.ggpht.com/-WZBb7kc6plc/UaDlG7S0TeI/AAAAAAAAMR8/2hoYk6QIIaI/s1600-h/image%25255B94%25255D.png)
+
+which are used from here:
+
+[![image](images/image_thumb_25255B50_25255D.png)](http://lh5.ggpht.com/-wb9B8sz7HCk/UaDlIUOXdcI/AAAAAAAAMSM/QJwacpoJSOo/s1600-h/image%25255B97%25255D.png)
+
+with just (note how the result is the same):
+
+[![image](images/image_thumb_25255B52_25255D.png)](http://lh5.ggpht.com/-PiNI-uEAGpM/UaDlKO9wBhI/AAAAAAAAMSc/ixZW61M8tsQ/s1600-h/image%25255B103%25255D.png)
+
+Next we clear the treeView using **_tvwTest.clear()_**
+
+[![image](images/image_thumb_25255B53_25255D.png)](http://lh3.ggpht.com/-xZtJIjw9HQk/UaDlL3rjPeI/AAAAAAAAMSs/ZvF7bh2IUq8/s1600-h/image%25255B106%25255D.png)
+
+and create the child nodes like this:
+
+[![image](images/image_thumb_25255B54_25255D.png)](http://lh5.ggpht.com/-idaujfuKvdw/UaDmg_5FkwI/AAAAAAAAMTE/11RNCcHLPR8/s1600-h/image%25255B109%25255D.png)
+
+Since the idea is to add the node to the root when **_ParentId_** is 0, we can refactor the code like this:
+
+[![image](images/image_thumb_25255B55_25255D.png)](http://lh5.ggpht.com/-qEt8v0EgRVM/UaDmjiOKNeI/AAAAAAAAMTU/ktUx26I7ecg/s1600-h/image%25255B112%25255D.png)
+
+And here is a confirmation that the refactored code behaves as the original (note the **_expandAll()_** call at the end, which save us to need to expand each node to check it)
+
+[![image](images/image_thumb_25255B57_25255D.png)](http://lh5.ggpht.com/-xn0Sp88mEms/UaDmmx45K5I/AAAAAAAAMTk/sTC6iDu6eos/s1600-h/image%25255B118%25255D.png)
+
+To make the code easier to read, let's remove the comments with the old code (I also changed like 76 to use the **_treeNode.get<T>()_** extension method):
+
+[![image](images/image_thumb_25255B58_25255D.png)](http://lh4.ggpht.com/-1eHStLiqKVU/UaDmpzlYcsI/AAAAAAAAMT0/q67Y3W0q30U/s1600-h/image%25255B121%25255D.png)
+
+And if you are into Linq we can replace the search with a dictionary:
+
+[![image](images/image_thumb_25255B59_25255D.png)](http://lh4.ggpht.com/-55JbDfAqvMg/UaDmt_GQ0xI/AAAAAAAAMUE/VOHRmD9bAdo/s1600-h/image%25255B124%25255D.png)
+
+The previous one looks to complex (and not optimized since we need to get all nodes all the time), so this version keeps an XRef of the articles added:
+
+[![image](images/image_thumb_25255B60_25255D.png)](http://lh4.ggpht.com/-VOqY5XUAY9g/UaDmw-2sZII/AAAAAAAAMUU/LGE9fSnnONA/s1600-h/image%25255B127%25255D.png)
+
+Here is a cleaner version:
+
+[![image](images/image_thumb_25255B62_25255D.png)](http://lh5.ggpht.com/-EQXtpPyeltM/UaDmzlTiNrI/AAAAAAAAMUk/TGbCEheR2QA/s1600-h/image%25255B133%25255D.png)
+
+I'm a big fan of Lambda methods, so here is version using them (note that the code below now handles the case when there is an invalid parent):
+
+[![image](images/image_thumb_25255B63_25255D.png)](http://lh4.ggpht.com/-92-8IuLKHyA/UaDm2m3dK6I/AAAAAAAAMU0/MZH4NgVuD3I/s1600-h/image%25255B136%25255D.png)
+
+Here is a simpler version (by adding another lambda method called **_findParent_**)
+
+[![image](images/image_thumb_25255B64_25255D.png)](http://lh6.ggpht.com/-S9r6CgHFpjQ/UaDm67--yLI/AAAAAAAAMVE/icr7yIFOY4o/s1600-h/image%25255B139%25255D.png)
+
+Which can be further simplified to:
+
+[![image](images/image_thumb_25255B65_25255D.png)](http://lh4.ggpht.com/-eYIA_LoDzq0/UaDm9_aQqVI/AAAAAAAAMVU/9nDythHQ1sk/s1600-h/image%25255B142%25255D.png)
+
+And here is the exact same code using functions (instead of Lamdba methods):
+
+[![image](images/image_thumb_25255B66_25255D.png)](http://lh5.ggpht.com/-FAn2jT7wDZ8/UaDnCCO0PCI/AAAAAAAAMVk/XTcK6Nz9LFQ/s1600-h/image%25255B145%25255D.png)
+
+**Let's try this on the O2 C# REPL**  
+**  
+**In the previous example I was using a normal C# class and a code editor.
+
+But for code samples/PoCs like this, I would normally use the [O2 Platform](http://blog.diniscruz.com/p/owasp-o2-platform.html) [C# REPL](http://blog.diniscruz.com/p/c-repl-script-environment.html) since it is a much faster and efficient code-development environment.
+
+Since we have some data hold on external classes, I will create a simple C# file (saved to **_E:\O2\O2.Temp\5_22_2013\tmpCCF6.tmp.cs_** ) with just that data:
+
+[![image](images/image_thumb_25255B68_25255D.png)](http://lh3.ggpht.com/-zgsIFJ-64og/UaDnFCBWWAI/AAAAAAAAMV0/ztUpb30S65w/s1600-h/image%25255B151%25255D.png)
+
+Then we open the C# REPL:
+
+[![image](images/image_thumb_25255B67_25255D.png)](http://lh6.ggpht.com/-vCtrWBxZSzg/UaDnGxdqJ_I/AAAAAAAAMWE/p34FZCuVjYc/s1600-h/image%25255B148%25255D.png)
+
+and add a reference to the TestData file, and invoke the _**TestData.GetTestData() **_static method:
+
+[![image](images/image_thumb_25255B69_25255D.png)](http://lh6.ggpht.com/-YCLLTmtL47o/UaDnJrdH7fI/AAAAAAAAMWU/WEZAeMvObZ0/s1600-h/image%25255B154%25255D.png)
+
+Then add the _TreeView_ and _Button_:
+
+[![image](images/image_thumb_25255B71_25255D.png)](http://lh3.ggpht.com/-Nj1Hl2WtBEM/UaDnLSqh4AI/AAAAAAAAMWk/1AycpCkaixo/s1600-h/image%25255B160%25255D.png)
+
+Then we add the lambda methods previously created, and we have a working PoC:
+
+[![image](images/image_thumb_25255B72_25255D.png)](http://lh6.ggpht.com/-7LtqvIxmVGk/UaDnM-l6ZEI/AAAAAAAAMW0/guDehrVOavg/s1600-h/image%25255B163%25255D.png)
+
+Lets add one more lambda method so that the tree population happens when the button is clicked:
+
+[![image](images/image_thumb_25255B73_25255D.png)](http://lh5.ggpht.com/-YVEmAGEN8F8/UaDnOqxi1eI/AAAAAAAAMXE/am2ewIRgAsM/s1600-h/image%25255B166%25255D.png)
+
+Finally lets change the topPanel variable to come from a stand-alone form:
+
+[![image](images/image_thumb_25255B74_25255D.png)](http://lh5.ggpht.com/-lpmw8Up5DiE/UaDnQBGkDHI/AAAAAAAAMXU/NoYRdXLo4dU/s1600-h/image%25255B169%25255D.png)
+
+and now clicking on **_Execute_** will give us a popup **_Form_**:
+
+[![image](images/image_thumb_25255B75_25255D.png)](http://lh5.ggpht.com/-0EKjbDY_BMc/UaDnRn0isaI/AAAAAAAAMXk/sZhn_CJ6tw0/s1600-h/image%25255B172%25255D.png)
+
+with the PoC:
+
+[![image](images/image_thumb_25255B76_25255D.png)](http://lh3.ggpht.com/-Y2d5tBSZGSo/UaDnTCfmmzI/AAAAAAAAMX0/QS9T1pv5wik/s1600-h/image%25255B175%25255D.png)
+
+Note that you can also package this PoC has a stand-alone exe using
+
+[![image](images/image_thumb_25255B83_25255D.png)](http://lh6.ggpht.com/-BzW_k7Kfh88/UaDnU1ImWHI/AAAAAAAAMYE/BUHTZ9bRfzo/s1600-h/image%25255B179%25255D.png)
+
+which will create a 902Kb file:
+
+[![image](images/image_thumb_25255B84_25255D.png)](http://lh3.ggpht.com/-aGjyD8gquTQ/UaDnWnGIIMI/AAAAAAAAMYU/66_Db0ANn-4/s1600-h/image%25255B182%25255D.png)
+
+of the PoC form:
+
+[![image](images/image_thumb_25255B85_25255D.png)](http://lh6.ggpht.com/-SJzLFN6joJI/UaDnYGzRfQI/AAAAAAAAMYk/e3TgleSPSTw/s1600-h/image%25255B185%25255D.png)
+
+**Code samples used in this post**
+
+1) original code  
+
+    
+    using System;  
+    using System.Collections.Generic;  
+    using System.ComponentModel;  
+    using System.Data;  
+    using System.Drawing;  
+    using System.Linq;  
+    using System.Text;  
+    using System.Windows.Forms;
+
+namespace NodesTest  
+{  
+public partial class Form1 : Form  
+{  
+private class TestData  
+{  
+public TestData(int pNodeId, int pParent, String pText)  
+{  
+NodeId = pNodeId;  
+ParentId = pParent;  
+Text = pText;  
+}
+
+public int NodeId { get; set; }  
+public int ParentId { get; set; }  
+public String Text { get; set; }  
+}
+
+//static test data.  
+private TestData[] testinfo = new TestData[]  
+{  
+new TestData(1, 0, "ID 1"),  
+new TestData(2, 0, "ID 2"),  
+new TestData(3, 1, "ID 3 Child 1 of ID 1 "),  
+new TestData(4, 1, "ID 4 Child 2 of ID 1"),  
+new TestData(5, 2, "ID 5 Child 1 of ID 2"),  
+new TestData(6, 2, "ID 5 Child 2 of ID 2"),  
+new TestData(7, 2, "ID 5 Child 3 of ID 2"),  
+new TestData(8, 5, "ID 8 Child 1 of ID 5")  
+};  
+public Form1()  
+{  
+InitializeComponent();  
+}
+
+public IEnumerable<TreeNode> getAllNodes(TreeView tvw)  
+{  
+foreach (TreeNode iterate in tvw.Nodes)  
+{  
+yield return iterate;  
+foreach (TreeNode childiterate in getAllNodes(iterate))  
+{  
+yield return childiterate;  
+}  
+}  
+}
+
+public IEnumerable<TreeNode> getAllNodes(TreeNode tvw)  
+{  
+//iterate through all nodes...  
+foreach (TreeNode iterateNode in tvw.Nodes)  
+{  
+yield return iterateNode;  
+foreach (TreeNode childiterate in getAllNodes(iterateNode))  
+{  
+yield return childiterate;  
+}  
+}  
+}
+
+private void button1_Click(object sender, EventArgs e)  
+{  
+tvwTest.Nodes.Clear();  
+foreach (var iterate in testinfo)  
+{  
+TreeNode CreateNode = new TreeNode(iterate.Text);  
+CreateNode.Tag = iterate;  
+TreeNode ParentNode = null;  
+//if the parentID is 0, then add it to the TreeView.  
+if (iterate.ParentId != 0)  
+{  
+//if there is a parent, look through all the nodes, and find it.  
+foreach (TreeNode IterateNode in getAllNodes(tvwTest))  
+{  
+TestData grabdata = IterateNode.Tag as TestData;  
+if (grabdata != null)  
+{  
+if (grabdata.NodeId == iterate.ParentId)  
+{  
+ParentNode = IterateNode;  
+break;  
+}  
+}  
+}  
+}  
+if (ParentNode == null)  
+tvwTest.Nodes.Add(CreateNode);  
+else  
+ParentNode.Nodes.Add(CreateNode);  
+}  
+}
+
+}  
+}  
+
+
+2) version using lamda
+    
+    using System;  
+    using System.Collections.Generic;  
+    using System.ComponentModel;  
+    using System.Data;  
+    using System.Drawing;  
+    using System.Linq;  
+    using System.Text;  
+    using System.Windows.Forms;
+
+namespace NodesTest  
+{  
+public partial class Form1 : Form  
+{  
+private class TestData  
+{  
+public TestData(int pNodeId, int pParent, String pText)  
+{  
+NodeId = pNodeId;  
+ParentId = pParent;  
+Text = pText;  
+}
+
+public int NodeId { get; set; }  
+public int ParentId { get; set; }  
+public String Text { get; set; }  
+}
+
+//static test data.  
+private TestData[] testinfo = new TestData[]  
+{  
+new TestData(1, 0, "ID 1"),  
+new TestData(2, 0, "ID 2"),  
+new TestData(3, 1, "ID 3 Child 1 of ID 1 "),  
+new TestData(4, 1, "ID 4 Child 2 of ID 1"),  
+new TestData(5, 2, "ID 5 Child 1 of ID 2"),  
+new TestData(6, 2, "ID 5 Child 2 of ID 2"),  
+new TestData(7, 2, "ID 5 Child 3 of ID 2"),  
+new TestData(8, 5, "ID 8 Child 1 of ID 5")  
+};  
+public Form1()  
+{  
+InitializeComponent();  
+}
+
+public IEnumerable<TreeNode> getAllNodes(TreeView tvw)  
+{  
+foreach (TreeNode iterate in tvw.Nodes)  
+{  
+yield return iterate;  
+foreach (TreeNode childiterate in getAllNodes(iterate))  
+{  
+yield return childiterate;  
+}  
+}  
+}
+
+public IEnumerable<TreeNode> getAllNodes(TreeNode tvw)  
+{  
+//iterate through all nodes...  
+foreach (TreeNode iterateNode in tvw.Nodes)  
+{  
+yield return iterateNode;  
+foreach (TreeNode childiterate in getAllNodes(iterateNode))  
+{  
+yield return childiterate;  
+}  
+}  
+}
+
+private void button1_Click(object sender, EventArgs e)  
+{  
+tvwTest.Nodes.Clear();  
+foreach (var iterate in testinfo)  
+{  
+TreeNode CreateNode = new TreeNode(iterate.Text);  
+CreateNode.Tag = iterate;  
+TreeNode ParentNode = null;  
+//if the parentID is 0, then add it to the TreeView.  
+if (iterate.ParentId != 0)  
+{  
+//if there is a parent, look through all the nodes, and find it.  
+foreach (TreeNode IterateNode in getAllNodes(tvwTest))  
+{  
+TestData grabdata = IterateNode.Tag as TestData;  
+if (grabdata != null)  
+{  
+if (grabdata.NodeId == iterate.ParentId)  
+{  
+ParentNode = IterateNode;  
+break;  
+}  
+}  
+}  
+}  
+if (ParentNode == null)  
+tvwTest.Nodes.Add(CreateNode);  
+else  
+ParentNode.Nodes.Add(CreateNode);  
+}  
+}
+
+}  
+}  
+  
+3) version using functions
+
+  
+
+    
+       1: using System;
+
+  
+
+    
+       2: using System.Collections.Generic;
+
+  
+
+    
+       3: using System.ComponentModel;
+
+  
+
+    
+       4: using System.Data; 
+
+  
+
+    
+       5: using System.Drawing;
+
+  
+
+    
+       6: using System.Linq;
+
+  
+
+    
+       7: using System.Text;
+
+  
+
+    
+       8: using System.Windows.Forms;
+
+  
+
+    
+       9: using O2.DotNetWrappers.ExtensionMethods;
+
+  
+
+    
+      10:  
+
+  
+
+    
+      11: namespace NodesTest
+
+  
+
+    
+      12: {
+
+  
+
+    
+      13:     public class TestForm1                    // add a test class
+
+  
+
+    
+      14:     {
+
+  
+
+    
+      15:         public void showForm()                // create a first method to be invoked
+
+  
+
+    
+      16:         {
+
+  
+
+    
+      17:             new Form1().ShowDialog();        // start the dialog    
+
+  
+
+    
+      18:         }
+
+  
+
+    
+      19:     }
+
+  
+
+    
+      20:  
+
+  
+
+    
+      21:     public partial class Form1 : Form
+
+  
+
+    
+      22:     {
+
+  
+
+    
+      23:         private class TestData
+
+  
+
+    
+      24:         {
+
+  
+
+    
+      25:             public TestData(int pNodeId, int pParent, String pText)
+
+  
+
+    
+      26:             {
+
+  
+
+    
+      27:                 NodeId = pNodeId;
+
+  
+
+    
+      28:                 ParentId = pParent;
+
+  
+
+    
+      29:                 Text = pText;
+
+  
+
+    
+      30:             }
+
+  
+
+    
+      31:  
+
+  
+
+    
+      32:             public int NodeId { get; set; }
+
+  
+
+    
+      33:             public int ParentId { get; set; }
+
+  
+
+    
+      34:             public String Text { get; set; }
+
+  
+
+    
+      35:         }
+
+  
+
+    
+      36:  
+
+  
+
+    
+      37:         //static test data.
+
+  
+
+    
+      38:         private TestData[] testinfo = new TestData[]
+
+  
+
+    
+      39:                                           {
+
+  
+
+    
+      40:                                               new TestData(1, 0, "ID 1"),
+
+  
+
+    
+      41:                                               new TestData(2, 0, "ID 2"),
+
+  
+
+    
+      42:                                               new TestData(3, 1, "ID 3 Child 1 of ID 1 "),
+
+  
+
+    
+      43:                                               new TestData(4, 1, "ID 4 Child 2 of ID 1"),
+
+  
+
+    
+      44:                                               new TestData(5, 2, "ID 5 Child 1 of ID 2"),
+
+  
+
+    
+      45:                                               new TestData(6, 2, "ID 5 Child 2 of ID 2"),
+
+  
+
+    
+      46:                                               new TestData(7, 2, "ID 5 Child 3 of ID 2"),
+
+  
+
+    
+      47:                                               new TestData(8, 5, "ID 8 Child 1 of ID 5")
+
+  
+
+    
+      48:                                           };
+
+  
+
+    
+      49:         public Form1()
+
+  
+
+    
+      50:         {
+
+  
+
+    
+      51:             //InitializeComponent()
+
+  
+
+    
+      52:             tvwTest        = this.add_TreeView();                  // Creating a TreeView            
+
+  
+
+    
+      53:             button1        = this.insert_Above(30)                // Adding a Panel above
+
+  
+
+    
+      54:                                  .add_Button("click me");        // Adding a Button                          
+
+  
+
+    
+      55:             button1.top(5).Click +=  button1_Click;                    // Setting the Click event
+
+  
+
+    
+      56:             
+
+  
+
+    
+      57:             button1.append_Link("REPL Form", ()=> this.script_Me()).top(10);
+
+  
+
+    
+      58:             
+
+  
+
+    
+      59:             //O2Thread.mtaThread(()=>button1.click());
+
+  
+
+    
+      60:         }
+
+  
+
+    
+      61:         
+
+  
+
+    
+      62:         public TreeView                   tvwTest             { get; set; }    // TreeView as an Property
+
+  
+
+    
+      63:         public Button                      button1             { get; set; }    // Button as an Property
+
+  
+
+    
+      64:         public Dictionary<int, TreeNode> nodes_XRefs        { get; set; }
+
+  
+
+    
+      65:         
+
+  
+
+    
+      66:         private TreeNode findParent(int parentId)
+
+  
+
+    
+      67:         {
+
+  
+
+    
+      68:             if (parentId ==0)
+
+  
+
+    
+      69:                 return tvwTest.rootNode();
+
+  
+
+    
+      70:             return nodes_XRefs.value(parentId);
+
+  
+
+    
+      71:         }             
+
+  
+
+    
+      72:         private void  addItem(TreeNode parentNode, int id, string text)                
+
+  
+
+    
+      73:         {
+
+  
+
+    
+      74:             if (parentNode.notNull())
+
+  
+
+    
+      75:             {
+
+  
+
+    
+      76:                 var newNode = parentNode.add_Node(text,id);
+
+  
+
+    
+      77:                 nodes_XRefs.add(id, newNode);
+
+  
+
+    
+      78:             }                        
+
+  
+
+    
+      79:         }         
+
+  
+
+    
+      80:         private void populateTreeView()
+
+  
+
+    
+      81:         {
+
+  
+
+    
+      82:             tvwTest.clear();     
+
+  
+
+    
+      83:             nodes_XRefs  = new Dictionary<int, TreeNode>();          
+
+  
+
+    
+      84:             foreach (var iterate in testinfo)                                           
+
+  
+
+    
+      85:             {                
+
+  
+
+    
+      86:                 var parentNode = findParent(iterate.ParentId);
+
+  
+
+    
+      87:                 addItem(parentNode, iterate.NodeId, iterate.Text);                                                                    
+
+  
+
+    
+      88:             }
+
+  
+
+    
+      89:         }
+
+  
+
+    
+      90:         private void button1_Click(object sender, EventArgs e)
+
+  
+
+    
+      91:         {                                                                                  
+
+  
+
+    
+      92:             populateTreeView();            
+
+  
+
+    
+      93:             tvwTest.expandAll();
+
+  
+
+    
+      94:         }
+
+  
+
+    
+      95:  
+
+  
+
+    
+      96:     }
+
+  
+
+    
+      97: }
+
+4) class with TestData
+    
+    using System;
+
+public class TestData  
+{
+
+public int NodeId { get; set; }  
+public int ParentId { get; set; }  
+public String Text { get; set; }
+
+public TestData(int pNodeId, int pParent, String pText)  
+{  
+NodeId = pNodeId;  
+ParentId = pParent;  
+Text = pText;  
+}  
+public static TestData[] GetTestData()  
+{  
+return new TestData[]  
+{  
+new TestData(1, 0, "ID 1"),  
+new TestData(2, 0, "ID 2"),  
+new TestData(3, 1, "ID 3 Child 1 of ID 1 "),  
+new TestData(4, 1, "ID 4 Child 2 of ID 1"),  
+new TestData(5, 2, "ID 5 Child 1 of ID 2"),  
+new TestData(6, 2, "ID 5 Child 2 of ID 2"),  
+new TestData(7, 2, "ID 5 Child 3 of ID 2"),  
+new TestData(8, 5, "ID 8 Child 1 of ID 5")  
+};  
+}  
+}  
+  
+  
+5) H2 script that consumes the TestData class and creates the stand-alone exe:
+    
+    var topPanel = "PoC - Populate TreeView from data"  
+                    .popupWindow(700,400);  
+    //var topPanel = panel.clear().add_Panel();
+
+var tvwTest = topPanel.add_TreeView();  
+var button = tvwTest.insert_Right(200)  
+.add_Button("click me").fill();
+
+var testinfo = TestData.GetTestData();
+
+var nodes_XRefs = new Dictionary<int, TreeNode>();
+
+Func<int, TreeNode> findParent =   
+(parentId)=>{  
+if (parentId ==0)  
+return tvwTest.rootNode();  
+return nodes_XRefs.value(parentId);  
+};
+
+Action<TreeNode, int, string> addItem =   
+(parentNode,id, text)=>   
+{  
+if (parentNode.notNull())  
+{  
+var newNode = parentNode.add_Node(text,id);  
+nodes_XRefs.add(id, newNode);  
+}   
+};
+
+Action populateData =   
+()=>{   
+tvwTest.clear();
+
+foreach (var iterate in testinfo)   
+{   
+var parentNode = findParent(iterate.ParentId);  
+addItem(parentNode, iterate.NodeId, iterate.Text);   
+}
+
+tvwTest.expandAll();  
+};
+
+button.onClick(()=>populateData());
+
+//O2File:E:\O2\O2.Temp\5_22_2013\tmpCCF6.tmp.cs  
+

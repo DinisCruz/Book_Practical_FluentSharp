@@ -1,0 +1,29 @@
+##  Version of O2Platform 5.3 released 
+
+I just pushed to GitHub a new version of the O2 Platform which has a massive Namespace rename and a number of new features  
+
+
+  
+
+
+You can download the stand-alone exe from here: [https://o2platform.googlecode.com/files/O2%20Platform%20-%20Main%20O2%20Gui%20v5.3.exe](https://o2platform.googlecode.com/files/O2%20Platform%20-%20Main%20O2%20Gui%20v5.3.exe)
+
+  
+
+
+The NuGet packages can be consumed from [http://www.nuget.org/packages?q=fluentSharp](http://www.nuget.org/packages?q=fluentSharp) 
+
+  
+
+
+And the code is at [https://github.com/o2platform](https://github.com/o2platform)  (with for example the FluentSharp commits available at: [https://github.com/o2platform/FluentSharp/commits/master](https://github.com/o2platform/FluentSharp/commits/master) )
+
+  
+
+
+Let me know your views on it or if you find probs running it
+
+  
+
+
+Thanks
