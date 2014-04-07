@@ -1,0 +1,43 @@
+var baseFolder = @"E:\_Work\_Books\Book_Thoughts_OWASP";
+
+if (baseFolder.isGitRepository().isFalse())
+	return "no git repo found";
+
+var nGit = baseFolder.git_Open();
+
+var files = baseFolder.pathCombine("manuscript").files(true, "*.md");
+
+foreach(var file in files)
+{
+	var fileName = file.fileName();
+	var newFile = file.replace(fileName,fileName.replace(" ","_"));
+	if (newFile.fileExists())
+	{
+		"Skipping file: {0}".debug(newFile);
+	}
+	else
+	{
+		System.IO.File.Move(file, newFile);
+		if (newFile.fileExists())
+			"File renamed ok: {0}".info(newFile);
+		else
+			return "error on file: {0}".error(newFile);
+	}
+}
+
+// nGit.add_and_Commit_using_Status();
+
+//if (nGit.status()=="")
+//	return nGit.push();
+
+return "ok";
+
+
+//nGit.commit_using_Status();
+//return nGit.gitData_Commits(10,false);
+
+
+//using System.IO;
+//using FluentSharp.Git  
+//O2Ref:FluentSharp.NGit.dll
+//O2Ref:NGit.dll

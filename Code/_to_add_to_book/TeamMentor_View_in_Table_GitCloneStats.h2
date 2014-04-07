@@ -1,0 +1,14 @@
+//var gitCloneDataFile = @"C:\Users\o2\AppData\Local\NCrunch\2304\19\FluentSharp\FluentSharp.CoreLib\bin\Debug\O2.Temp\3_31_2014\_Temp_Clones\Git_Clone_Data.xml";
+var gitCloneDataFile = @"E:\TeamMentor\TM_Releases\QA_Versions\DEV_3.4.1_Misc_Analysis\Git_Clone_Data - in TM - 31-3-2014.xml";
+var gitCloneData = gitCloneDataFile.load<List<Git_Clone_Data>>();
+//return gitCloneData;
+
+
+var topPanel = "Git Clone Data".popupWindow(700,400);
+//var topPanel     = panel.clear().add_Panel();
+var tableList    = topPanel.add_TableList();
+tableList.show(gitCloneData);
+
+
+//using TeamMentor.Test
+//O2File:E:\O2_v4\O2_Fork_NGit\TeamMentor.Test\Git_Clone_Data.cs
